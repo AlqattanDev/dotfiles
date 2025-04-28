@@ -1,0 +1,97 @@
+/* Neovim-inspired Wofi style - Like the command palette */
+
+window {
+    margin: 0px;
+    border: 2px solid #7aa2f7;
+    border-radius: 6px;
+    background-color: #1a1b26;
+    font-family: "JetBrains Mono Nerd Font";
+    font-size: 14px;
+    animation: fadeIn 0.2s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#input {
+    margin: 6px;
+    padding: 8px 12px;
+    border: 2px solid #24283b;
+    border-radius: 4px;
+    background-color: #24283b;
+    color: #c0caf5;
+    font-size: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+#input:focus {
+    border: 2px solid #7aa2f7;
+    outline: none;
+}
+
+#inner-box {
+    margin: 6px;
+    background-color: #1a1b26;
+    color: #c0caf5;
+    border-radius: 4px;
+}
+
+#outer-box {
+    margin: 6px;
+    padding: 6px;
+    background-color: #1a1b26;
+    border-radius: 6px;
+}
+
+#scroll {
+    margin: 4px;
+    background-color: #1a1b26;
+    border-radius: 4px;
+}
+
+#text {
+    margin: 6px;
+    color: #c0caf5;
+    font-size: 14px;
+}
+
+#entry {
+    padding: 6px;
+    margin: 2px 4px;
+    border-radius: 4px;
+    transition: all 0.15s ease-in-out;
+}
+
+#entry:selected {
+    background-color: #283457;
+    border-radius: 4px;
+    box-shadow: 0 0 3px rgba(122, 162, 247, 0.5);
+}
+
+#entry:hover {
+    background-color: #24283b;
+}
+
+#entry:selected #text {
+    color: #7aa2f7;
+    font-weight: bold;
+}
+
+/* Show matching characters in a different color - like Neovim search */
+#entry:selected .match {
+    color: #9ece6a;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.match {
+    color: #e0af68;
+}

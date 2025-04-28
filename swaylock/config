@@ -1,0 +1,42 @@
+# Neovim-inspired swaylock configuration
+
+# Colors
+color=1a1b26
+inside-color=24283b
+ring-color=7aa2f7
+line-color=1a1b26
+text-color=c0caf5
+
+inside-clear-color=e0af68
+ring-clear-color=e0af68
+line-clear-color=1a1b26
+text-clear-color=1a1b26
+
+inside-ver-color=7dcfff
+ring-ver-color=7dcfff
+line-ver-color=1a1b26
+text-ver-color=1a1b26
+
+inside-wrong-color=f7768e
+ring-wrong-color=f7768e
+line-wrong-color=1a1b26
+text-wrong-color=1a1b26
+
+# Appearance
+indicator
+indicator-radius=150
+indicator-thickness=10
+clock
+timestr=%H:%M
+datestr=%a, %d %b
+
+scaling=fill
+font=JetBrains Mono Nerd Font
+font-size=24
+
+# Show failed attempts
+show-failed-attempts
+
+# Other
+ignore-empty-password
+disable-caps-lock-text

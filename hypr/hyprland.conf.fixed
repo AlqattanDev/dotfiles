@@ -1,0 +1,224 @@
+# Neovim-inspired Hyprland configuration for Fedora on Lenovo Yoga 7i Pro
+
+#-------------------------------------------------------
+# Monitor Configuration
+#-------------------------------------------------------
+monitor=,preferred,auto,1
+
+#-------------------------------------------------------
+# Environment Variables
+#-------------------------------------------------------
+env = XCURSOR_SIZE,24
+env = QT_QPA_PLATFORMTHEME,qt5ct
+env = WLR_NO_HARDWARE_CURSORS,1 # Needed for VM
+
+#-------------------------------------------------------
+# Autostart
+#-------------------------------------------------------
+# Execute apps at launch using our comprehensive script
+exec-once = ~/.config/hypr/autostart.sh
+
+#-------------------------------------------------------
+# General Configuration
+#-------------------------------------------------------
+general {
+    gaps_in = 5
+    gaps_out = 8
+    border_size = 2
+    col.active_border = rgba(7aa2f7ee) rgba(bb9af7ee) 45deg
+    col.inactive_border = rgba(24283baa)
+    layout = dwindle
+    resize_on_border = true
+}
+
+#-------------------------------------------------------
+# Decoration
+#-------------------------------------------------------
+decoration {
+    rounding = 4
+    
+    blur {
+        enabled = true
+        size = 4
+        passes = 2
+        new_optimizations = true
+    }
+    
+    # Shadow configuration (updated syntax)
+    drop_shadow = yes
+    shadow_range = 8
+    shadow_render_power = 3
+    col.shadow = rgba(1a1b26ee)
+    
+    # Opacity settings
+    active_opacity = 1.0
+    inactive_opacity = 0.95
+    
+    # Dim settings
+    dim_inactive = true
+    dim_strength = 0.1
+}
+
+#-------------------------------------------------------
+# Animations
+#-------------------------------------------------------
+animations {
+    enabled = true
+
+    # Neovim-inspired smooth transitions
+    bezier = easeOutExpo, 0.16, 1, 0.3, 1
+    bezier = easeOutQuint, 0.22, 1, 0.36, 1
+    bezier = overshot, 0.05, 0.9, 0.1, 1.1
+    bezier = smoothOut, 0.36, 0, 0.66, -0.56
+    bezier = smoothIn, 0.25, 1, 0.5, 1
+
+    animation = windows, 1, 4, overshot, slide
+    animation = windowsOut, 1, 4, smoothOut, slide
+    animation = windowsMove, 1, 4, smoothIn, slide
+    animation = border, 1, 6, default
+    animation = fade, 1, 6, smoothIn
+    animation = fadeDim, 1, 4, smoothIn
+    animation = workspaces, 1, 5, overshot, slidevert
+}
+
+#-------------------------------------------------------
+# Input Configuration
+#-------------------------------------------------------
+input {
+    kb_layout = us
+    kb_options = caps:escape # Neovim-style Caps as Escape
+    follow_mouse = 1
+    sensitivity = 0 # -1.0 - 1.0, 0 means no modification.
+    touchpad {
+        natural_scroll = true
+        disable_while_typing = true
+        tap-to-click = true
+    }
+}
+
+#-------------------------------------------------------
+# Layouts
+#-------------------------------------------------------
+dwindle {
+    pseudotile = true # master switch for pseudotiling
+    preserve_split = true # you probably want this
+}
+
+
+#-------------------------------------------------------
+# Window Rules
+#-------------------------------------------------------
+# Example: make Firefox float in some instances
+# windowrule = float, ^(firefox)$
+# For all categories, see wiki
+windowrule = float, ^(pavucontrol)$
+windowrule = float, ^(blueman-manager)$
+windowrule = float, ^(nm-connection-editor)$
+
+#-------------------------------------------------------
+# Keybindings
+#-------------------------------------------------------
+# Basic keys
+$mainMod = SUPER
+$shiftMod = SUPER SHIFT
+$altMod = SUPER ALT
+$ctrlMod = SUPER CTRL
+
+# Neovim-like window navigation (hjkl)
+bind = $mainMod, h, movefocus, l
+bind = $mainMod, l, movefocus, r
+bind = $mainMod, k, movefocus, u
+bind = $mainMod, j, movefocus, d
+
+# Neovim-like window movement (HJKL)
+bind = $shiftMod, h, movewindow, l
+bind = $shiftMod, l, movewindow, r
+bind = $shiftMod, k, movewindow, u
+bind = $shiftMod, j, movewindow, d
+
+# Neovim-like window resizing (with Alt)
+bind = $altMod, h, resizeactive, -20 0
+bind = $altMod, l, resizeactive, 20 0
+bind = $altMod, k, resizeactive, 0 -20
+bind = $altMod, j, resizeactive, 0 20
+
+# Terminal and application launchers (Neovim buffer-like operations)
+bind = $mainMod, RETURN, exec, ghostty
+bind = $mainMod, q, killactive,      # Like :q in Neovim
+bind = $mainMod, space, exec, wofi --show drun  # Like Space in Neovim
+bind = $mainMod, e, exec, dolphin    # Like :e in Neovim
+bind = $mainMod SHIFT, v, togglefloating,  # Shift+v like visual line in Neovim
+bind = $mainMod, f, fullscreen,      # Like searching with f
+bind = $mainMod, o, pseudo,          # Like opening line in Neovim
+bind = $mainMod, s, togglesplit,     # Like split in Neovim
+
+# Additional Neovim-inspired bindings
+bind = $ctrlMod, w, workspace,       # Like ctrl+w in Neovim for window ops
+bind = $shiftMod, x, exec, hyprctl kill  # Like :x to save and quit
+bind = $mainMod, slash, exec, wofi --show run  # Like / for search
+bind = $mainMod, n, exec, swaync-client -t  # Like n for next match (notification)
+bind = $mainMod, r, submap, resize   # Like r for replace/resize
+
+# Workspaces - numbered from 1-9
+bind = $mainMod, 1, workspace, 1
+bind = $mainMod, 2, workspace, 2
+bind = $mainMod, 3, workspace, 3
+bind = $mainMod, 4, workspace, 4
+bind = $mainMod, 5, workspace, 5
+bind = $mainMod, 6, workspace, 6
+bind = $mainMod, 7, workspace, 7
+bind = $mainMod, 8, workspace, 8
+bind = $mainMod, 9, workspace, 9
+
+# Move active window to a workspace
+bind = $mainMod SHIFT, 1, movetoworkspace, 1
+bind = $mainMod SHIFT, 2, movetoworkspace, 2
+bind = $mainMod SHIFT, 3, movetoworkspace, 3
+bind = $mainMod SHIFT, 4, movetoworkspace, 4
+bind = $mainMod SHIFT, 5, movetoworkspace, 5
+bind = $mainMod SHIFT, 6, movetoworkspace, 6
+bind = $mainMod SHIFT, 7, movetoworkspace, 7
+bind = $mainMod SHIFT, 8, movetoworkspace, 8
+bind = $mainMod SHIFT, 9, movetoworkspace, 9
+
+# Scroll through existing workspaces with mainMod + scroll
+bind = $mainMod, mouse_down, workspace, e+1
+bind = $mainMod, mouse_up, workspace, e-1
+
+# Move/resize windows with mainMod + LMB/RMB and dragging
+bindm = $mainMod, mouse:272, movewindow
+bindm = $mainMod, mouse:273, resizewindow
+
+# Screenshots (like Neovim yank)
+bind = , Print, exec, ~/.config/hypr/screenshot.sh area
+bind = SHIFT, Print, exec, ~/.config/hypr/screenshot.sh window
+bind = CTRL, Print, exec, ~/.config/hypr/screenshot.sh screen
+bind = $mainMod, y, exec, ~/.config/hypr/screenshot.sh area
+
+# Volume and brightness
+bind = , XF86AudioRaiseVolume, exec, pamixer -i 5
+bind = , XF86AudioLowerVolume, exec, pamixer -d 5
+bind = , XF86AudioMute, exec, pamixer -t
+bind = , XF86MonBrightnessUp, exec, brightnessctl set +5%
+bind = , XF86MonBrightnessDown, exec, brightnessctl set 5%-
+
+# Neovim modes
+bind = $mainMod, i, exec, ~/.config/hypr/neovim-mode.sh INSERT
+bind = $mainMod, v, exec, ~/.config/hypr/neovim-mode.sh VISUAL
+bind = $mainMod, colon, exec, ~/.config/hypr/neovim-mode.sh COMMAND
+bind = , Escape, exec, ~/.config/hypr/neovim-mode.sh NORMAL
+
+# Submaps (like Neovim modes)
+submap = resize
+bind = , h, resizeactive, -20 0
+bind = , l, resizeactive, 20 0
+bind = , k, resizeactive, 0 -20
+bind = , j, resizeactive, 0 20
+bind = , escape, submap, reset
+submap = reset
+
+# Lock screen (like :w)
+bind = $mainMod, w, exec, ~/.config/hypr/lock.sh
+
+# Exit Hyprland (like :wq!)
+bind = $shiftMod, e, exit

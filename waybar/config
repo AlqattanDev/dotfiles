@@ -1,0 +1,109 @@
+{
+    "layer": "top", 
+    "position": "top", 
+    "height": 32, 
+    "spacing": 6,
+    
+    "modules-left": ["hyprland/workspaces", "hyprland/submap", "custom/mode"],
+    "modules-center": ["hyprland/window"],
+    "modules-right": ["custom/neovim", "tray", "backlight", "pulseaudio", "network", "battery", "clock"],
+    
+    "hyprland/workspaces": {
+        "format": "{icon}",
+        "on-click": "activate",
+        "format-icons": {
+            "1": "1",
+            "2": "2",
+            "3": "3",
+            "4": "4",
+            "5": "5",
+            "6": "6",
+            "7": "7",
+            "8": "8",
+            "9": "9",
+            "urgent": "",
+            "active": "",
+            "default": ""
+        },
+        "sort-by-number": true
+    },
+    
+    "hyprland/window": {
+        "format": "{}",
+        "max-length": 50,
+        "separate-outputs": true
+    },
+    
+    "hyprland/submap": {
+        "format": "<span style=\"italic\">-- {} --</span>",
+        "tooltip": false
+    },
+    
+    "custom/mode": {
+        "format": "{}",
+        "return-type": "json",
+        "interval": 1,
+        "exec": "~/.config/waybar/neovim-mode.sh",
+        "signal": 1,
+        "tooltip": false
+    },
+    
+    "custom/neovim": {
+        "format": " ",
+        "tooltip": false
+    },
+    
+    "tray": {
+        "spacing": 10
+    },
+    
+    "clock": {
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "format": "{:%H:%M}",
+        "format-alt": "{:%Y-%m-%d}"
+    },
+    
+    "backlight": {
+        "format": "{percent}% {icon}",
+        "format-icons": ["", "", "", "", "", "", "", "", ""]
+    },
+    
+    "battery": {
+        "states": {
+            "good": 95,
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{capacity}% {icon}",
+        "format-charging": "{capacity}% ",
+        "format-plugged": "{capacity}% ",
+        "format-alt": "{time} {icon}",
+        "format-icons": ["", "", "", "", ""]
+    },
+    
+    "network": {
+        "format-wifi": "{essid} ({signalStrength}%) ",
+        "format-ethernet": "Ethernet ",
+        "tooltip-format": "{ifname} via {gwaddr}",
+        "format-linked": "{ifname} (No IP) ",
+        "format-disconnected": "Disconnected ⚠",
+        "format-alt": "{ifname}: {ipaddr}/{cidr}"
+    },
+    
+    "pulseaudio": {
+        "format": "{volume}% {icon}",
+        "format-bluetooth": "{volume}% {icon} ",
+        "format-bluetooth-muted": "Muted  ",
+        "format-muted": "Muted ",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        },
+        "on-click": "pavucontrol"
+    }
+}
