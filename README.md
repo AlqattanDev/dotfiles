@@ -6,7 +6,7 @@ A meticulously crafted collection of configuration files for a powerful developm
 
 ```bash
 # Clone this repository
-git clone https://github.com/yourusername/dotfiles.git ~/dotfiles
+jj git clone https://github.com/AlqattanDev/dotfiles.git ~/dotfiles
 
 # Run the installation script
 cd ~/dotfiles
@@ -92,7 +92,7 @@ The `install.sh` script will:
    ```bash
    # Using Homebrew
    brew install --cask aerospace ghostty karabiner-elements
-   brew install tmux neovim
+   brew install tmux neovim jj
    ```
 
 2. **Set up Oh My Zsh** (if not already installed):
@@ -106,7 +106,7 @@ The `install.sh` script will:
 
 ## 🔄 Updating Configurations
 
-Since all configurations are symlinked to this repository:
+Since all configurations are symlinked to this repository and we use **Jujutsu (jj)** for version control:
 
 1. **Edit files directly** in the `~/dotfiles/` directory
 2. **Changes are reflected immediately** in your system
@@ -114,9 +114,12 @@ Since all configurations are symlinked to this repository:
 
 ```bash
 cd ~/dotfiles
-git add .
-git commit -m "Update configuration"
-git push
+
+# Create a new commit with your changes
+jj describe -m "Update configuration: describe your changes"
+
+# Push to GitHub
+jj git push --bookmark main
 ```
 
 ## 🌟 Features
@@ -137,6 +140,36 @@ git push
 - Vim-style navigation everywhere
 - Consistent color schemes
 - Productive workspace layouts
+
+### Modern Version Control
+- Uses **Jujutsu (jj)** for superior version control experience
+- Better conflict resolution than git
+- Immutable commits with easy history editing
+- Powerful revset queries for complex operations
+
+## 🔧 Jujutsu Commands
+
+Common jj commands for managing your dotfiles:
+
+```bash
+# View commit history
+jj log
+
+# Create a new commit
+jj describe -m "Your commit message"
+
+# Push changes
+jj git push --bookmark main
+
+# Pull changes
+jj git fetch && jj rebase -d main@origin
+
+# View current status
+jj status
+
+# Undo last commit (keeps changes)
+jj undo
+```
 
 ## 🤝 Contributing
 
