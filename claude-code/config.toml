@@ -1,0 +1,9 @@
+# Ratatui Claude Code Configuration
+# 
+# To use Claude API, set your API key below:
+# You can get an API key from: https://console.anthropic.com/
+#
+# Uncomment and set your API key:
+# claude_api_key = "your-api-key-here"
+
+claude_api_url = "https://api.anthropic.com/v1/messages"

@@ -1,0 +1,97 @@
+#!/bin/bash
+
+# SketchyBar Configuration
+# Minimal setup with essentials for AeroSpace window manager
+
+# Set CONFIG_DIR
+export CONFIG_DIR="$HOME/.config/sketchybar"
+
+# Bar Appearance
+sketchybar --bar height=32 \
+                 blur_radius=30 \
+                 position=top \
+                 sticky=off \
+                 padding_left=10 \
+                 padding_right=10 \
+                 color=0xaa000000 \
+                 corner_radius=9 \
+                 y_offset=10 \
+                 margin=10
+
+# Default values
+sketchybar --default icon.font="SF Pro:Semibold:15.0" \
+                     icon.color=0xffffffff \
+                     label.font="SF Pro:Semibold:15.0" \
+                     label.color=0xffffffff \
+                     padding_left=5 \
+                     padding_right=5 \
+                     label.padding_left=4 \
+                     label.padding_right=4 \
+                     icon.padding_left=4 \
+                     icon.padding_right=4
+
+# Left side items
+# Simple workspace indicators (we'll enhance these later)
+for i in {1..9}; do
+  sketchybar --add item space.$i left \
+             --set space.$i icon=$i \
+                          icon.color=0xff000000 \
+                          icon.padding_left=10 \
+                          icon.padding_right=10 \
+                          background.padding_left=5 \
+                          background.padding_right=5 \
+                          background.color=0x88ffffff \
+                          background.corner_radius=6 \
+                          background.height=24 \
+                          click_script="aerospace workspace $i"
+done
+
+# Front app
+sketchybar --add item front_app left \
+           --set front_app       background.color=0x88ffffff \
+                                background.corner_radius=6 \
+                                background.height=24 \
+                                background.padding_left=8 \
+                                background.padding_right=8 \
+                                icon.color=0xff79c0ff \
+                                label.color=0xff000000 \
+                                script="$CONFIG_DIR/plugins/front_app.sh" \
+           --subscribe front_app front_app_switched
+
+# Right side items
+# CPU usage
+sketchybar --add item cpu right \
+           --set cpu   update_freq=2 \
+                      icon=󰻠 \
+                      icon.color=0xff9ece6a \
+                      script="$CONFIG_DIR/plugins/cpu.sh"
+
+# Memory usage
+sketchybar --add item memory right \
+           --set memory update_freq=15 \
+                       icon=󰍛 \
+                       icon.color=0xff7aa2f7 \
+                       script="$CONFIG_DIR/plugins/memory.sh"
+
+# Battery
+sketchybar --add item battery right \
+           --set battery update_freq=120 \
+                        script="$CONFIG_DIR/plugins/battery.sh" \
+           --subscribe battery system_woke power_source_change
+
+# Volume
+sketchybar --add item volume right \
+           --set volume script="$CONFIG_DIR/plugins/volume.sh" \
+           --subscribe volume volume_change
+
+# Date and time
+sketchybar --add item clock right \
+           --set clock   update_freq=10 \
+                        icon=󰥔 \
+                        icon.color=0xfff7768e \
+                        script="$CONFIG_DIR/plugins/clock.sh"
+
+# Finalizing the setup
+sketchybar --update
+
+echo "SketchyBar configuration loaded"
