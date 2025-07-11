@@ -13,6 +13,20 @@ cd ~/dotfiles
 ./install.sh
 ```
 
+## 📚 Cheatsheets
+
+Comprehensive reference guides for all configurations:
+
+- **[📚 Master Index](./cheatsheets/README.md)** - Overview and quick reference
+- **[🚀 Aerospace](./cheatsheets/aerospace.md)** - Window management (Alt+hjkl)
+- **[📺 Tmux](./cheatsheets/tmux.md)** - Terminal multiplexer
+- **[🐚 Zsh](./cheatsheets/zsh.md)** - Shell configuration and aliases
+- **[⚡ Neovim](./cheatsheets/neovim.md)** - Text editor with LSP and AI
+- **[👻 Ghostty](./cheatsheets/ghostty.md)** - Modern terminal emulator
+- **[⌨️ Karabiner](./cheatsheets/karabiner.md)** - Keyboard customization
+- **[📊 Sketchybar](./cheatsheets/sketchybar.md)** - Status bar configuration
+- **[🤖 Claude](./cheatsheets/claude.md)** - AI development assistance
+
 ## 📦 What's Included
 
 ### 🐚 Shell Environment
@@ -47,8 +61,10 @@ dotfiles/
 ├── sketchybar/        # Status bar configuration
 ├── tmux/              # Terminal multiplexer config
 ├── zsh/               # Shell configuration
+├── cheatsheets/       # Reference guides for all configs
 ├── install.sh         # Installation script
-└── README.md          # This file
+├── SETUP.md          # Setup guide for new machines
+└── README.md         # This file
 ```
 
 ## ⌨️ Key Bindings
@@ -171,6 +187,42 @@ jj status
 jj undo
 ```
 
+## 🎯 Quick Workflow
+
+### Daily Development
+```bash
+# 1. Start development session
+tms myproject
+
+# 2. Open editor
+v .
+
+# 3. Navigate with Aerospace
+Alt + h/j/k/l  # Focus windows
+Alt + 1-9      # Switch workspaces
+
+# 4. Quick git workflow
+gitq           # Add, commit, push
+
+# 5. AI assistance
+claude "Help me with this code"
+```
+
+### Configuration Updates
+```bash
+# 1. Edit configs in ~/dotfiles/
+v ~/dotfiles/zsh/.zshrc
+
+# 2. Changes apply immediately (symlinked)
+
+# 3. Commit changes
+cd ~/dotfiles
+jj describe -m "Update zsh configuration"
+
+# 4. Push to GitHub
+jj git push --bookmark main
+```
+
 ## 🤝 Contributing
 
 Feel free to fork this repository and customize it for your own needs. If you have improvements or fixes, pull requests are welcome!
@@ -182,3 +234,5 @@ This configuration is provided as-is for personal use. Feel free to use, modify,
 ---
 
 *"The expert in anything was once a beginner."* - Helen Hayes
+
+**📚 Don't forget to check the [cheatsheets](./cheatsheets/README.md) for detailed usage guides!**
