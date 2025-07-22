@@ -1,5 +1,45 @@
+# Terminal identification - crucial for SSH compatibility
+term = "xterm-256color"
+
+# Font settings
+font-family = "JetBrains Mono"
+font-size = 14
+
+# Theme - using one of the available built-in themes
+theme = "Dracula"
+
+# Terminal behavior for better SSH/tmux compatibility
+scrollback-limit = 50000
+confirm-close-surface = false
+
+# Shell integration
+shell-integration = "zsh"
+
+# Mouse support - important for tmux
+mouse-hide-while-typing = true
+
+# Cursor settings
+cursor-style = "block"
+cursor-style-blink = false
+
+# Window settings
+window-decoration = true
+window-padding-x = 4
+window-padding-y = 4
+
+# Background
+background-opacity = 1.0
+
+# Key bindings (keeping your existing ones and adding important ones)
 keybind = shift+enter=text:\n
 keybind = ctrl+h=goto_split:left
 keybind = ctrl+j=goto_split:bottom
 keybind = ctrl+k=goto_split:top
 keybind = ctrl+l=goto_split:right
+
+# Clipboard bindings
+keybind = cmd+c=copy_to_clipboard
+keybind = cmd+v=paste_from_clipboard
+
+# Terminal reset binding (useful when you get garbled output)
+keybind = cmd+r=reset

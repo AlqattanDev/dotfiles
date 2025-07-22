@@ -1,0 +1,36 @@
+{
+  "providers": {
+    "anthropic": {
+      "api_key_env": "ANTHROPIC_API_KEY",
+      "models": [
+        {
+          "name": "claude-3-5-sonnet-20241022",
+          "display_name": "Claude 3.5 Sonnet",
+          "max_tokens": 8192
+        }
+      ]
+    }
+  },
+  "default_provider": "anthropic",
+  "default_model": "claude-3-5-sonnet-20241022",
+  "modes": {
+    "build": {
+      "system_prompt": "You are an expert software engineer. Focus on writing clean, efficient code and following best practices."
+    },
+    "plan": {
+      "system_prompt": "You are a technical architect. Focus on planning and designing solutions before implementation."
+    }
+  },
+  "ui": {
+    "theme": "dark",
+    "editor": {
+      "word_wrap": true,
+      "line_numbers": true
+    }
+  },
+  "context": {
+    "max_files": 10,
+    "include_git_info": true,
+    "include_diagnostics": true
+  }
+}

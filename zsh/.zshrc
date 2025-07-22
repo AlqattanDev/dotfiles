@@ -1,7 +1,6 @@
 #!/usr/bin/env zsh
 # Amazon Q pre block. Keep at the top of this file.
 [[ -f "${HOME}/Library/Application Support/amazon-q/shell/zshrc.pre.zsh" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/zshrc.pre.zsh"
-
 # ================================================================
 # 👑 DIVINE ZSH CONFIGURATION 👑
 # ================================================================
@@ -11,9 +10,6 @@
 # ================================================================
 # 🚀 PERFORMANCE OPTIMIZATIONS
 # ================================================================
-
-# Skip global compinit for faster startup
-skip_global_compinit=1
 
 # ================================================================
 # 🌍 CORE ENVIRONMENT
@@ -25,7 +21,7 @@ export LC_ALL=en_US.UTF-8
 
 # Default editors (in order of preference)
 export VISUAL=nvim
-export EDITOR='mate -w'
+export EDITOR='nvim'
 
 # XDG Base Directory Specification
 export XDG_CONFIG_HOME="$HOME/.config"
@@ -64,6 +60,7 @@ path_append "$HOME/.local/bin"
 path_append "$HOME/.npm-global/bin"
 path_append "$HOME/.bun/bin"
 path_append "$HOME/go/bin"
+path_append "$HOME/.cargo/bin"
 
 # Android SDK
 export ANDROID_HOME=~/Library/Android/sdk
@@ -170,9 +167,6 @@ alias sqlj='java -jar /Applications/SQLWorkbenchJ.app/Contents/Java/sqlworkbench
 alias llm_deepseek='llm -m deepseek-r1:8b'
 alias llm_cat_dir='find . -maxdepth 1 -type f | xargs -I {} sh -c '\''echo "\n=== {} ===\n"; cat {}'\'''
 
-# Claude Desktop
-alias claude="/Users/alialqattan/.claude/local/claude"
-
 # Task Master
 alias taskmaster='task-master'
 
@@ -233,9 +227,6 @@ unset __conda_setup
 # 📊 TELEMETRY & MONITORING
 # ================================================================
 
-# Claude Code telemetry
-export CLAUDE_CODE_ENABLE_TELEMETRY=1
-
 # OpenTelemetry configuration
 export OTEL_METRICS_EXPORTER=otlp
 export OTEL_LOGS_EXPORTER=otlp
@@ -293,10 +284,53 @@ mkproject() {
 # 🏁 INITIALIZATION HOOKS
 # ================================================================
 
-# Amazon Q post block. Keep at the bottom of this file.
-[[ -f "${HOME}/Library/Application Support/amazon-q/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/zshrc.post.zsh"
-
 # ================================================================
 # END OF DIVINE CONFIGURATION
 # ================================================================
 # "The expert in anything was once a beginner." - Helen Hayes
+
+# Add ~/.local/bin to PATH
+export PATH="$HOME/.local/bin:$PATH"
+
+# Amazon Q post block. Keep at the bottom of this file.
+[[ -f "${HOME}/Library/Application Support/amazon-q/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/zshrc.post.zsh"
+
+[[ "$TERM_PROGRAM" == "kiro" ]] && . "$(kiro --locate-shell-integration-path zsh)"
+
+# opencode
+export PATH=/Users/alialqattan/.opencode/bin:$PATH
+source /Users/alialqattan/.zsh_copilot_aliases
+
+# ==== TERMINAL COMPATIBILITY SETTINGS FOR GHOSTTY/SSH/TMUX ====
+# Terminal settings for better SSH and tmux compatibility
+export TERM="xterm-256color"
+export COLORTERM="truecolor"
+
+# Locale settings
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+
+# Fix delete key and other keys in SSH sessions
+[[ $- == *i* ]] && {
+    # Enable proper key bindings
+    bindkey "^[[3~" delete-char
+    bindkey "^[[H" beginning-of-line
+    bindkey "^[[F" end-of-line
+    bindkey "^[[1;5C" forward-word
+    bindkey "^[[1;5D" backward-word
+}
+
+# Function to reset terminal when things get garbled
+reset-terminal() {
+    printf '\033c'
+    export TERM="xterm-256color"
+    clear
+    echo "Terminal reset!"
+}
+
+# Alias for quick terminal reset
+alias fix-term='reset-terminal'
+alias rt='reset-terminal'
+
+# ==== END TERMINAL COMPATIBILITY SETTINGS ====
+
